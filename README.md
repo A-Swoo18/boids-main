@@ -1,7 +1,7 @@
+# Disclaimer:
+ - This simulator is implemented and modified from Daniel Huang's original flocking simulation.
+ - https://github.com/cubeDhuang/boids
+
+
 # boids
-
-[demo](https://boids.dan.onl)
-
-interactive 2d flocking simulation with many customizable parameters
-
-don't judge the code quality i don't know what i was doing
+ - Interactive 2d flocking simulation with many customizable parameters
