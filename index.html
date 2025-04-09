@@ -274,18 +274,26 @@
 				data-model="noise"
 			/>
 
-			<div id="current-settings">
-				<label for="velocity">Current Velocity:</label>
-				<input type="range" id="velocity" min="0" max="10" step="0.1" value="5">
-				<span id="velocity-value">5</span> <br>
-			  
-				<label for="direction">Current Direction (Degrees):</label>
-				<input type="range" id="direction" min="0" max="360" step="1" value="0">
-				<span id="direction-value">0</span> <br>
-			  
-				<button id="apply-current">Apply Current</button>
-			  </div>
-			  
+			<p>current velocity: <span data-show="velocity"></span></p>
+			<input
+				type="range"
+				min="0"
+				max="100"
+				step="1"
+				data-model="velocity"
+			/>
+
+			<p>current direction (degrees): <span data-show="direction"></span></p>
+			<input
+				type="range"
+				min="0"
+				max="360"
+				step="1"
+				data-model="direction"
+			/>
+
+			<button id="apply-current">Apply Current</button>
+
 
 			<h4>debug info</h4>
 
