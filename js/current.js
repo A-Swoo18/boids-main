@@ -26,12 +26,22 @@ applyCurrentButton.addEventListener('click', () => {
   applyCurrentToBoids(current.velocity, current.direction);
 });
 
-// Function to apply the current to the boid simulation (example)
+// // Function to apply the current to the boid simulation (example)
+// function applyCurrentToBoids(velocity, direction) {
+//   console.log(`Applying current: Velocity = ${velocity}, Direction = ${direction}`);
+//   // Here you would apply the current to the boids, for example:
+//   boids.forEach(boid => {
+//     boid.velocity.x += Math.cos(direction * Math.PI / 180) * velocity;
+//     boid.velocity.y += Math.sin(direction * Math.PI / 180) * velocity;
+//   });
+// }
+
 function applyCurrentToBoids(velocity, direction) {
-  console.log(`Applying current: Velocity = ${velocity}, Direction = ${direction}`);
-  // Here you would apply the current to the boids, for example:
-  boids.forEach(boid => {
-    boid.velocity.x += Math.cos(direction * Math.PI / 180) * velocity;
-    boid.velocity.y += Math.sin(direction * Math.PI / 180) * velocity;
+  const dx = Math.cos((direction * Math.PI) / 180) * velocity;
+  const dy = Math.sin((direction * Math.PI) / 180) * velocity;
+
+  flock.boids.forEach(boid => {
+    boid.vel.x += dx;
+    boid.vel.y += dy;
   });
 }
