@@ -14,7 +14,7 @@ const opt = (() => {
 	const defaults = {
 		menu: true,
 		paused: false,
-		boids: 1500,
+		boids: 500,
 
 		toggle: false,
 		desired: false,
