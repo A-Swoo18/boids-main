@@ -129,6 +129,16 @@ class Boid extends V2D {
 	}
 
 	update() {
+		if (typeof current !== 'undefined') {
+			const angle = (current.direction * Math.PI) / 360;
+			const dx = Math.cos(angle) * current.velocity * g.delta;
+			const dy = Math.sin(angle) * current.velocity * g.delta;
+			// this.vel.x += dx;
+			// this.vel.y += dy;
+			this.vel.sclAdd(new V2D(dx, dy), 0.2); // apply only 20% strength
+
+		}
+	
 		this.vel.sclAdd(this.acc, g.delta);
 
 		if (opt.drag) this.vel.mult(1 - opt.drag);

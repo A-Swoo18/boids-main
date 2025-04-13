@@ -1,47 +1,31 @@
-let current = {
-  velocity: 5,  // Default velocity
-  direction: 0  // Default direction in degrees
+// Define current globally
+window.current = {
+  velocity: parseFloat(document.querySelector('[data-model="velocity"]').value),
+  direction: parseFloat(document.querySelector('[data-model="direction"]').value)
 };
 
-// Select the input elements
-const velocityInput = document.getElementById('velocity');
-const directionInput = document.getElementById('direction');
-const velocityValueDisplay = document.getElementById('velocity-value');
-const directionValueDisplay = document.getElementById('direction-value');
+const velocityInput = document.querySelector('[data-model="velocity"]');
+const directionInput = document.querySelector('[data-model="direction"]');
 const applyCurrentButton = document.getElementById('apply-current');
 
-// Event listeners to update the displayed values and current object
+// Optional: Show values live (if you want)
+const velocityDisplay = document.querySelector('[data-show="velocity"]');
+const directionDisplay = document.querySelector('[data-show="direction"]');
+
+// Listen for slider changes
 velocityInput.addEventListener('input', () => {
-  velocityValueDisplay.textContent = velocityInput.value;
   current.velocity = parseFloat(velocityInput.value);
+  if (velocityDisplay) velocityDisplay.textContent = velocityInput.value;
+  console.log("Velocity changed to:", current.velocity);
 });
 
 directionInput.addEventListener('input', () => {
-  directionValueDisplay.textContent = directionInput.value;
   current.direction = parseFloat(directionInput.value);
+  if (directionDisplay) directionDisplay.textContent = directionInput.value;
+  console.log("Direction changed to:", current.direction);
 });
 
-// Apply current to the boid simulation when button is clicked
+// Optional: apply button (not strictly needed now that it's real-time)
 applyCurrentButton.addEventListener('click', () => {
-  applyCurrentToBoids(current.velocity, current.direction);
+  console.log(`Applied: Velocity = ${current.velocity}, Direction = ${current.direction}`);
 });
-
-// // Function to apply the current to the boid simulation (example)
-// function applyCurrentToBoids(velocity, direction) {
-//   console.log(`Applying current: Velocity = ${velocity}, Direction = ${direction}`);
-//   // Here you would apply the current to the boids, for example:
-//   boids.forEach(boid => {
-//     boid.velocity.x += Math.cos(direction * Math.PI / 180) * velocity;
-//     boid.velocity.y += Math.sin(direction * Math.PI / 180) * velocity;
-//   });
-// }
-
-function applyCurrentToBoids(velocity, direction) {
-  const dx = Math.cos((direction * Math.PI) / 180) * velocity;
-  const dy = Math.sin((direction * Math.PI) / 180) * velocity;
-
-  flock.boids.forEach(boid => {
-    boid.vel.x += dx;
-    boid.vel.y += dy;
-  });
-}
