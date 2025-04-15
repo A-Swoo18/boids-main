@@ -303,13 +303,19 @@
 				<!-- average speed info -->
 				<p>avg speed: <span id="avg-speed"></span></p>
 
+				<!-- experiment controls -->
+				<h4>Experiment</h4>
+				<div class="resetters">
+					<button id="start-experiment">Start Experiment</button>
+					<button id="download-csv">Download CSV</button>
+				</div>
 				<div>
 					<input type="checkbox" id="buckets" data-model="buckets" />
 					<label for="buckets"> show spatial subdivision</label>
 				</div>
 			</div>
 		</div>
-
+				
 		<div id="toggler" data-click="toggleMenu">
 			<div class="img">
 				<img src="./right-arrow.svg" alt="arrow" />
@@ -337,6 +343,14 @@
 			</div>
 		</div>
 
+
+		<div id="experiment-popup" style="display: none; position: fixed; top: 30px; right: 30px; background: #4caf50; color: white; padding: 16px 24px; border-radius: 8px; z-index: 9999; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+			Experiment complete! 🎉<br>
+			Your data is ready to download.
+			<button id="close-popup" style="margin-top: 8px; background: white; color: #4caf50; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer;">Close</button>
+		</div>
+		
+
 		<script src="./lib/pixi.min.js"></script>
 
 		<script src="./js/v2d.js"></script>
@@ -347,6 +361,9 @@
 		<script src="./js/main.js"></script>
 		<script src="./js/events.js"></script>
 		<script src="./js/current.js"></script>
+		<script src="./js/flocking_metrics.js"></script>
+		<script src="./js/experiment_logger.js"></script>
+
 
 	</body>
 </html>

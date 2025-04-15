@@ -111,3 +111,5 @@ function loop(delta) {
 }
 
 app.ticker.add(loop);
+
+setInterval(() => logFlockingMetrics(flock.boids, current), 500);

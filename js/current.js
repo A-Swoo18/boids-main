@@ -29,3 +29,11 @@ directionInput.addEventListener('input', () => {
 applyCurrentButton.addEventListener('click', () => {
   console.log(`Applied: Velocity = ${current.velocity}, Direction = ${current.direction}`);
 });
+
+document.getElementById("start-experiment").addEventListener("click", () => {
+	startExperiment(30); // 30 seconds experiment
+});
+
+document.getElementById("download-csv").addEventListener("click", () => {
+	downloadCSV();
+});
