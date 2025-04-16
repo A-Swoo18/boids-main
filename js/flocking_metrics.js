@@ -3,7 +3,7 @@
 
 function getAverageAlignment(boids) {
 	let sum = new V2D();
-	boids.forEach(b => sum.add(b.vel.normalized()));
+	boids.forEach(b => sum.add(b.vel.clone().normalize()));
 	sum.div(boids.length);
 	return sum.mag(); // Closer to 1 = more aligned
 }
@@ -37,7 +37,7 @@ function getAverageAlignmentWithCurrent(boids, current) {
 	let currentVec = new V2D(Math.cos(angle), Math.sin(angle));
 	let dotSum = 0;
 	boids.forEach(b => {
-		dotSum += b.vel.normalized().dot(currentVec);
+		dotSum += b.vel.clone().normalize().dot(currentVec);
 	});
 	return dotSum / boids.length; // 1 = perfectly aligned with current
 }

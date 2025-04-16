@@ -30,12 +30,14 @@ let experimentInterval = null;
 
 function startExperiment(duration = 30, sampleRate = 1) {
 	const startBtn = document.getElementById("start-experiment");
-	startBtn.textContent = "Experiment Running...";
-	startBtn.style.backgroundColor = "#ff9800"; // orange
+	startBtn.textContent = "Collecting Data...";
+	startBtn.style.backgroundColor = "#ff9800";
 	startBtn.disabled = true;
 
 	experimentData = [];
-	let time = 0;
+
+	let ticks = 0;
+	const maxTicks = Math.floor(duration / sampleRate);
 
 	experimentInterval = setInterval(() => {
 		const avgAlign = getAverageAlignment(flock.boids);
@@ -44,7 +46,7 @@ function startExperiment(duration = 30, sampleRate = 1) {
 		const alignWithCurrent = getAverageAlignmentWithCurrent(flock.boids, current);
 
 		experimentData.push({
-			time,
+			time: ticks * sampleRate,
 			velocity: current.velocity,
 			avgAlignment: avgAlign,
 			directionStdDev: dirStd,
@@ -52,9 +54,11 @@ function startExperiment(duration = 30, sampleRate = 1) {
 			alignmentWithCurrent: alignWithCurrent
 		});
 
-		time += sampleRate;
-        if (time >= duration) stopExperiment();
-            }, sampleRate * 1000);
+		ticks++;
+		if (ticks >= maxTicks) {
+			stopExperiment();
+		}
+	}, sampleRate * 1000);
 }
 
 
@@ -122,7 +126,6 @@ function downloadCSV() {
 }
 
 
-// Optional: Hook to buttons
 document.getElementById("start-experiment").addEventListener("click", () => startExperiment(30));
 document.getElementById("download-csv").addEventListener("click", downloadCSV);
 document.getElementById("close-popup").addEventListener("click", () => {
